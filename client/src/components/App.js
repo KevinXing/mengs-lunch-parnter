@@ -1,12 +1,10 @@
 import React from "react";
-import VideoList from "./VideoList";
+import VideoCanvas from "./VideoCanvas";
 
 const App = () => {
-  const testVideos = [
-    { title: "test1", date: "2020-01-01" },
-    { title: "test2", date: "2020-02-01" },
-  ];
-  return <VideoList />;
+  return (
+    <VideoCanvas vloggerIds={[99157282, 257215079, 176037767, 398581197]} />
+  );
 };
 
 export default App;
