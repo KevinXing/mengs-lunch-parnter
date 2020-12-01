@@ -1,0 +1,32 @@
+.content {
+  word-wrap: normal;
+  font-size: 1vw;
+}
+
+.header {
+  margin-bottom: 10px;
+  padding-bottom: 40px;
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.wrapper {
+  max-height: 40px;
+  column-width: 199px;
+}
+
+#date {
+  font-family: Blippo, fantasy;
+  float: right;
+  color: black;
+}
+
+#duration {
+  font-family: Blippo, fantasy;
+  text-align: left;
+  color: black;
+}
+
+img {
+  margin-bottom: 10px;
+}

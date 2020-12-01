@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const bilibili = axios.create({
-  baseURL: "https://thingproxy.freeboard.io/fetch/https://api.bilibili.com/x",
+  baseURL: "http://192.168.0.176:3001/fetch/https://api.bilibili.com/x",
 });
 
 export default bilibili;
