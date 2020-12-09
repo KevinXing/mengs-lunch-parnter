@@ -7,13 +7,15 @@ class Video extends React.Component {
     return (
       <div className="column">
         <a className="item" href={url} target="_blank" rel="noreferrer">
-          <img
-            className="ui fluid rounded image"
-            src={pic}
-            // This is necessary unless the pic will not be loaded.
-            referrerPolicy="no-referrer"
-            alt=""
-          />
+          <div className="aspect-ratio-box">
+            <img
+              className="ui rounded image"
+              src={pic}
+              // This is necessary unless the pic will not be loaded.
+              referrerPolicy="no-referrer"
+              alt=""
+            />
+          </div>
           <div className="content">
             <div className="header">
               <div className="wrapper">{title}</div>
