@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
-import videoInfo from "./videos";
+import { reducer as reduxFormReducer } from "redux-form";
+import videoList from "./videos";
 
-export default combineReducers({ videoInfo });
+export default combineReducers({ videoList, form: reduxFormReducer });

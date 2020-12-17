@@ -15,7 +15,6 @@ export const addVideos = (vloggerId, source) => {
 
 const convertBilibiliDuration = (rawDuration) => {
   const durationArray = rawDuration.split(":");
-  console.log(durationArray);
 
   if (durationArray.length === 2) {
     let min = parseInt(durationArray[0]);

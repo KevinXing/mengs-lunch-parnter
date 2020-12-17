@@ -1,21 +1,35 @@
 import React from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-
 import { addVideos } from "../actions";
+
 import VideoList from "./VideoList";
 import "../styles/VideoCanvas.css";
 
 class VideoCanvas extends React.Component {
+  constructor(props) {
+    super(props);
+    this.vloggerInfos = [
+      { id: 257215079, source: "bilibili" },
+      { id: 99157282, source: "bilibili" },
+      { id: 176037767, source: "bilibili" },
+      { id: 398581197, source: "bilibili" },
+      { id: "UCISrVZmDM4x-Rq9mmNUw7Zw", source: "youtube" },
+      { id: 290526283, source: "bilibili" },
+      { id: 25807917, source: "bilibili" },
+      { id: "UCEDkO7wshcDZ7UZo17rPkzQ", source: "youtube" },
+    ];
+  }
+
   componentDidMount() {
-    this.props.vloggerInfos.forEach((info) => {
+    this.vloggerInfos.forEach((info) => {
       this.props.addVideos(info.id, info.source);
     });
   }
 
   renderLatestVideos = () => {
     const result = [];
-    this.props.vloggerInfos.map((value) => {
+    this.vloggerInfos.map((value) => {
       const key = value.source + "-" + value.id;
       if (!_.has(this.props.result, key)) {
         return null;
@@ -23,6 +37,9 @@ class VideoCanvas extends React.Component {
       const detail = this.props.result[key];
       result.push(detail.videos[0]);
       return null;
+    });
+    result.sort((a, b) => {
+      return Date.parse(b.date) - Date.parse(a.date);
     });
     return <VideoList author="Latest Videos" videos={result} source="" />;
   };
@@ -32,7 +49,7 @@ class VideoCanvas extends React.Component {
       return null;
     }
 
-    return this.props.vloggerInfos.map((value) => {
+    return this.vloggerInfos.map((value) => {
       const key = value.source + "-" + value.id;
       if (!_.has(this.props.result, key)) {
         return null;
@@ -62,7 +79,7 @@ class VideoCanvas extends React.Component {
 const mapDispatchToProps = { addVideos };
 
 const mapStateToProps = (state) => ({
-  result: state.videoInfo,
+  result: state.videoList,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(VideoCanvas);

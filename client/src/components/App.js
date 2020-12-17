@@ -1,19 +1,19 @@
 import React from "react";
 import VideoCanvas from "./VideoCanvas";
-
-const vloggerInfo = [
-  { id: 257215079, source: "bilibili" },
-  { id: 99157282, source: "bilibili" },
-  { id: 176037767, source: "bilibili" },
-  { id: 398581197, source: "bilibili" },
-  { id: "UCISrVZmDM4x-Rq9mmNUw7Zw", source: "youtube" },
-  { id: 290526283, source: "bilibili" },
-  { id: 25807917, source: "bilibili" },
-  { id: "UCEDkO7wshcDZ7UZo17rPkzQ", source: "youtube" },
-];
+import Subscriptions from "./Subscriptions";
+import { BrowserRouter, Route } from "react-router-dom";
+import Header from "./Header";
 
 const App = () => {
-  return <VideoCanvas vloggerInfos={vloggerInfo} />;
+  return (
+    <BrowserRouter>
+      <div>
+        <Header />
+        <Route exact path="/" component={VideoCanvas} />
+        <Route exact path="/Subscriptions" component={Subscriptions} />
+      </div>
+    </BrowserRouter>
+  );
 };
 
 export default App;

@@ -31,8 +31,8 @@
 .aspect-ratio-box::after {
   display: block;
   content: "";
-  /* 16:9 aspect ratio */
-  padding-bottom: 56.25%;
+  /* 16:10 aspect ratio */
+  padding-bottom: 62.5%;
 }
 
 .aspect-ratio-box {
