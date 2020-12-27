@@ -1,10 +1,10 @@
-.content {
+#videoContent {
   word-wrap: normal;
   font-size: 1vw;
   margin-top: 10px;
 }
 
-.header {
+#videoHeader {
   margin-bottom: 10px;
   padding-bottom: 40px;
   max-height: 40px;

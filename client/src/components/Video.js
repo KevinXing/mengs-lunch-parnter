@@ -16,8 +16,8 @@ class Video extends React.Component {
               alt=""
             />
           </div>
-          <div className="content">
-            <div className="header">
+          <div id="videoContent" className="content">
+            <div id="videoHeader" className="header">
               <div className="wrapper">{title}</div>
             </div>
             <div id="duration">
