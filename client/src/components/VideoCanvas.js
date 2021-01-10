@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { addVideos } from "../actions";
+import { addVideos } from "../actions/addVideos";
+import { fetchSubscriptions } from "../actions/fetchSubscriptions";
 
 import VideoList from "./VideoList";
 import "../styles/VideoCanvas.css";
@@ -25,6 +26,7 @@ class VideoCanvas extends React.Component {
     this.vloggerInfos.forEach((info) => {
       this.props.addVideos(info.id, info.source);
     });
+    this.props.fetchSubscriptions();
   }
 
   renderLatestVideos = () => {
@@ -76,7 +78,7 @@ class VideoCanvas extends React.Component {
   }
 }
 
-const mapDispatchToProps = { addVideos };
+const mapDispatchToProps = { addVideos, fetchSubscriptions };
 
 const mapStateToProps = (state) => ({
   result: state.videoList,

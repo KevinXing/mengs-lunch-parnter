@@ -2,6 +2,7 @@ import React from "react";
 
 import SearchBar from "./SearchBar";
 import SearchResultList from "./SearchResultList";
+import SubscriptionDetails from "./SubscriptionDetails";
 import bilibili from "../axios/bilibili";
 import youtube from "../axios/youtube";
 
@@ -35,6 +36,8 @@ class Subscriptions extends React.Component {
         vlogger: item.uname,
         id: item.mid,
         pic: item.upic,
+        url: "//space.bilibili.com/" + item.mid,
+        source: "bilibili",
       }));
       this.setState(() => {
         return { bilibiliSearchResult: result, hasBilibiliResult: true };
@@ -57,15 +60,18 @@ class Subscriptions extends React.Component {
         },
       });
       console.log(resp.data);
-      if (resp.data.pageInfo.totalResults === 0) {
+      if (resp.data.pageInfo.resultsPerPage === 0) {
         this.setState(() => {
           return { hasYoutubeResult: false };
         });
+        return;
       }
       const result = resp.data.items.map((item) => ({
         vlogger: item.snippet.channelTitle,
         id: item.id.channelId,
         pic: item.snippet.thumbnails.default.url,
+        url: "//www.youtube.com/channel/" + item.id.channelId,
+        source: "youtube",
       }));
       this.setState(() => {
         return { youtubeSearchResult: result, hasYoutubeResult: true };
@@ -83,6 +89,7 @@ class Subscriptions extends React.Component {
   render() {
     return (
       <div className="ui segment">
+        <SubscriptionDetails />
         <SearchBar onSubmit={this.onSubmit} />
         <div className="ui grid">
           <div className="eight wide column">

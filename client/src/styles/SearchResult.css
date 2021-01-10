@@ -3,6 +3,7 @@
   padding-left: 5px;
 }
 
-#searchResultDescription {
-  padding-left: 5px;
+#subscribeButton {
+  float: right !important;
+  margin-top: 20px;
 }

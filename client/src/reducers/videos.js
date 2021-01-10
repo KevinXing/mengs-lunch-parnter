@@ -2,7 +2,7 @@ import { ADD_VIDEOS } from "../constants/actionTypes";
 
 const initState = {};
 
-export const videoKey = (vloggerId, source) => {
+const videoKey = (vloggerId, source) => {
   return source + "-" + vloggerId;
 };
 
