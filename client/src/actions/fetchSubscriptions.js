@@ -1,6 +1,7 @@
 import {
   FETCH_SUBSCRIPTIONS,
   ADD_SUBSCRIPTIONS,
+  DELETE_SUBSCRIPTIONS,
 } from "../constants/actionTypes";
 import backend from "../axios/backend";
 
@@ -16,11 +17,16 @@ export const addSubscriptions = (vlogger) => {
   };
 };
 
+export const deleteSubscriptions = (info) => {
+  return (dispatch) => {
+    deleteBackend(info, dispatch);
+  };
+};
+
 const fetchBackend = async (dispatch) => {
   try {
     const resp = await backend.get("subscriptions");
     const data = resp.data;
-    console.log(data);
     dispatch({
       type: FETCH_SUBSCRIPTIONS,
       payload: {
@@ -32,14 +38,28 @@ const fetchBackend = async (dispatch) => {
   }
 };
 
-const addBackend = async (vlogger, dispatch) => {
+const addBackend = async (vloggerInfo, dispatch) => {
   try {
-    console.log(vlogger, dispatch);
-    await backend.post("subscriptions", vlogger);
+    await backend.post("subscriptions", vloggerInfo);
     dispatch({
       type: ADD_SUBSCRIPTIONS,
       payload: {
-        vlogger: vlogger,
+        vlogger: vloggerInfo,
+      },
+    });
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
+const deleteBackend = async (info, dispatch) => {
+  try {
+    await backend.delete("subscriptions/" + info.id);
+    dispatch({
+      type: DELETE_SUBSCRIPTIONS,
+      payload: {
+        id: info.id,
+        source: info.source,
       },
     });
   } catch (error) {

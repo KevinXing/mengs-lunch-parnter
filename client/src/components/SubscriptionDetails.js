@@ -1,24 +1,47 @@
 import React from "react";
-
-import backend from "../axios/backend";
+import _ from "lodash";
+import { connect } from "react-redux";
+import { fetchSubscriptions } from "../actions/fetchSubscriptions";
+import ImangeWithButton from "./ImageWithButton";
 
 class SubscriptionDetails extends React.Component {
   componentDidMount() {
-    this.fetchSubscriptions();
+    this.props.fetchSubscriptions();
+    console.log("sub", this.props);
   }
 
-  fetchSubscriptions = async () => {
-    try {
-      const resp = await backend.get("subscriptions");
-      console.log(resp);
-    } catch (error) {
-      console.log("error", error);
+  renderList() {
+    if (_.isEmpty(this.props.vloggers)) {
+      return null;
     }
-  };
+
+    return Object.values(this.props.vloggers).map((vlogger) => {
+      return (
+        <div className="column" key={vlogger.id}>
+          <ImangeWithButton vlogger={vlogger}></ImangeWithButton>
+        </div>
+      );
+    });
+  }
 
   render() {
-    return <div>Me</div>;
+    console.log("render sub", this.props);
+    return (
+      <div className="ui segment">
+        <h2>Subscriptions</h2>
+        <div className="ui seven column grid">{this.renderList()}</div>
+      </div>
+    );
   }
 }
 
-export default SubscriptionDetails;
+const mapDispatchToProps = { fetchSubscriptions };
+
+const mapStateToProps = (state) => ({
+  vloggers: state.subscriptions,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SubscriptionDetails);

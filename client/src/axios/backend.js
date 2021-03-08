@@ -1,7 +1,8 @@
 import axios from "axios";
+import { dbServerUrl } from "../config";
 
 const backend = axios.create({
-  baseURL: "http://localhost:3002",
+  baseURL: dbServerUrl,
 });
 
 export default backend;

@@ -59,7 +59,6 @@ class Subscriptions extends React.Component {
           key: process.env.REACT_APP_GOOGLE_API_KEY,
         },
       });
-      console.log(resp.data);
       if (resp.data.pageInfo.resultsPerPage === 0) {
         this.setState(() => {
           return { hasYoutubeResult: false };

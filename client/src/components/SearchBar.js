@@ -6,7 +6,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <form className="ui form" onSubmit={this.props.handleSubmit}>
-        <header id="searchBarHeader">Vlogger</header>
+        <h1 id="searchBarHeader">Search Vlogger</h1>
         <div className="ui grid">
           <div className="fourteen wide column">
             <Field name="vlogger" component="input" type="text" />

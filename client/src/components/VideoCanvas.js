@@ -20,18 +20,36 @@ class VideoCanvas extends React.Component {
       { id: 25807917, source: "bilibili" },
       { id: "UCEDkO7wshcDZ7UZo17rPkzQ", source: "youtube" },
     ];
+    this.state = { init: false };
   }
 
   componentDidMount() {
+    this.props.fetchSubscriptions();
+
+    /* 
     this.vloggerInfos.forEach((info) => {
       this.props.addVideos(info.id, info.source);
     });
-    this.props.fetchSubscriptions();
+    */
+  }
+
+  componentDidUpdate() {
+    if (this.state.init === false && !_.isEmpty(this.props.vloggers)) {
+      console.log("did", this.props);
+      _.values(this.props.vloggers).forEach((info) => {
+        console.log("did info", info);
+        this.props.addVideos(info.id, info.source);
+      });
+      this.setState({ init: true });
+    }
   }
 
   renderLatestVideos = () => {
+    if (!this.props.vloggers) {
+      return null;
+    }
     const result = [];
-    this.vloggerInfos.map((value) => {
+    _.values(this.props.vloggers).map((value) => {
       const key = value.source + "-" + value.id;
       if (!_.has(this.props.result, key)) {
         return null;
@@ -50,8 +68,10 @@ class VideoCanvas extends React.Component {
     if (!this.props.result) {
       return null;
     }
-
-    return this.vloggerInfos.map((value) => {
+    if (!this.props.vloggers) {
+      return null;
+    }
+    return _.values(this.props.vloggers).map((value) => {
       const key = value.source + "-" + value.id;
       if (!_.has(this.props.result, key)) {
         return null;
@@ -82,6 +102,7 @@ const mapDispatchToProps = { addVideos, fetchSubscriptions };
 
 const mapStateToProps = (state) => ({
   result: state.videoList,
+  vloggers: state.subscriptions,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(VideoCanvas);

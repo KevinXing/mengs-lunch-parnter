@@ -1,0 +1,11 @@
+#seg {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+#button {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
