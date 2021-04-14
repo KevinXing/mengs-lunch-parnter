@@ -1,7 +1,8 @@
 import axios from "axios";
+import { getProxyURL } from "./backend";
 
 const bilibili = axios.create({
-  baseURL: "http://192.168.0.176:3001/fetch/https://api.bilibili.com/x",
+  baseURL: getProxyURL() + "/fetch/https://api.bilibili.com/x",
 });
 
 export default bilibili;

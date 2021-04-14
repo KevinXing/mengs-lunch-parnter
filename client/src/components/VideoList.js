@@ -30,7 +30,7 @@ class VideoList extends React.Component {
             {this.props.author}
           </h2>
         </div>
-        <div className="ui five column grid">{this.renderList()}</div>
+        <div className="ui stackable five column grid">{this.renderList()}</div>
       </div>
     );
   }

@@ -7,7 +7,6 @@ import ImangeWithButton from "./ImageWithButton";
 class SubscriptionDetails extends React.Component {
   componentDidMount() {
     this.props.fetchSubscriptions();
-    console.log("sub", this.props);
   }
 
   renderList() {
@@ -25,7 +24,6 @@ class SubscriptionDetails extends React.Component {
   }
 
   render() {
-    console.log("render sub", this.props);
     return (
       <div className="ui segment">
         <h2>Subscriptions</h2>

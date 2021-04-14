@@ -10,34 +10,16 @@ import "../styles/VideoCanvas.css";
 class VideoCanvas extends React.Component {
   constructor(props) {
     super(props);
-    this.vloggerInfos = [
-      { id: 257215079, source: "bilibili" },
-      { id: 99157282, source: "bilibili" },
-      { id: 176037767, source: "bilibili" },
-      { id: 398581197, source: "bilibili" },
-      { id: "UCISrVZmDM4x-Rq9mmNUw7Zw", source: "youtube" },
-      { id: 290526283, source: "bilibili" },
-      { id: 25807917, source: "bilibili" },
-      { id: "UCEDkO7wshcDZ7UZo17rPkzQ", source: "youtube" },
-    ];
     this.state = { init: false };
   }
 
   componentDidMount() {
     this.props.fetchSubscriptions();
-
-    /* 
-    this.vloggerInfos.forEach((info) => {
-      this.props.addVideos(info.id, info.source);
-    });
-    */
   }
 
   componentDidUpdate() {
     if (this.state.init === false && !_.isEmpty(this.props.vloggers)) {
-      console.log("did", this.props);
       _.values(this.props.vloggers).forEach((info) => {
-        console.log("did info", info);
         this.props.addVideos(info.id, info.source);
       });
       this.setState({ init: true });

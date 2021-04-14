@@ -1,19 +1,18 @@
 #videoContent {
   word-wrap: normal;
   font-size: 1vw;
-  margin-top: 10px;
+  margin-top: 1vw;
 }
 
 #videoHeader {
-  margin-bottom: 10px;
-  padding-bottom: 40px;
-  max-height: 40px;
+  margin-bottom: 1vw;
+  padding-bottom: 1vw;
+  max-height: 4vw;
   overflow: hidden;
 }
 
 .wrapper {
-  max-height: 40px;
-  column-width: 199px;
+  max-height: 4vw;
 }
 
 #date {
@@ -45,4 +44,20 @@
   top: 0;
   width: 100%;
   height: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  #duration,
+  #date {
+    font-size: 2vw !important;
+  }
+  #videoContent {
+    font-size: 4vw;
+  }
+  #videoHeader {
+    max-height: 16vw;
+  }
+  .wrapper {
+    max-height: 16vw;
+  }
 }
